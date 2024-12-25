@@ -13,7 +13,6 @@ const UserLogin = () => {
         email:email,
         password:password
     });
-    console.log(userData);
     
     setEmail('');
     setPassword('');
@@ -65,7 +64,7 @@ const UserLogin = () => {
         </form>
       </div>
       <div>
-        <Link to='/captain-login' className="bg-[#10b461] flex items-center justify-center mb-5 text-white font-semibold mb-7 rounded px-4 py-2 w-full text-lg ">
+        <Link to='/captain-login' className="bg-[#10b461] flex items-center justify-center mb-5 text-white font-semibold rounded px-4 py-2 w-full text-lg ">
           Sign in as Captain
         </Link>
       </div>
