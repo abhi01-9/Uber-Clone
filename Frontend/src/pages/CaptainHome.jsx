@@ -1,8 +1,49 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useResolvedPath } from "react-router-dom";
 import CaptainDetails from "../components/CaptainDetails";
 import RidePopUp from "../components/RidePopUp";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useState, useRef } from "react";
+import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
+
 const CaptainHome = () => {
+  const [ridePopupPanel, setRidePopupPanel] = useState(true);
+  const ridePopupPanelRef = useRef(null);
+
+  const [confirmRidePopupPanel, setConfirmRidePopupPanel] = useState(false);
+  const confirmRidePopupPanelRef = useRef(null);
+
+  useGSAP(
+    function () {
+      if (ridePopupPanel) {
+        gsap.to(ridePopupPanelRef.current, {
+          transform: "translateY(0)",
+        });
+      } else {
+        gsap.to(ridePopupPanelRef.current, {
+          transform: "translateY(100%)",
+        });
+      }
+    },
+    [ridePopupPanel]
+  );
+
+  useGSAP(
+    function () {
+      if (confirmRidePopupPanel) {
+        gsap.to(confirmRidePopupPanelRef.current, {
+          transform: "translateY(0)",
+        });
+      } else {
+        gsap.to(confirmRidePopupPanelRef.current, {
+          transform: "translateY(100%)",
+        });
+      }
+    },
+    [confirmRidePopupPanel]
+  );
+
   return (
     <div>
       <div className="fixed p-3 top-0 flex items-center justify-between w-screen">
@@ -26,13 +67,27 @@ const CaptainHome = () => {
         />
       </div>
       <div className="h-2/5 p-6">
-        <CaptainDetails/>
+        <CaptainDetails />
       </div>
 
       <div
-        className="fixed w-full z-10 bottom-0    bg-white px-3 py-10 pt-12"
+        ref={ridePopupPanelRef}
+        className="fixed w-full translate-y-full z-10 bottom-0    bg-white px-3 py-10 pt-12"
       >
-       <RidePopUp/>
+        <RidePopUp
+          setRidePopupPanel={setRidePopupPanel}
+          setConfirmRidePopupPanel={setConfirmRidePopupPanel}
+        />
+      </div>
+
+      <div
+        ref={confirmRidePopupPanelRef}
+        className="fixed w-full translate-y-full z-10 bottom-0    bg-white px-3 py-10 pt-12 h-screen"
+      >
+        <ConfirmRidePopUp
+          setConfirmRidePopupPanel={setConfirmRidePopupPanel}
+          setRidePopupPanel={setRidePopupPanel}
+        />
       </div>
     </div>
   );
