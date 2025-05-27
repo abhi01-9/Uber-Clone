@@ -1,65 +1,29 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Start from "./pages/Start";
-import UserLogin from "./pages/UserLogin";
-import UserSignup from "./pages/UserSignup";
-import CaptainLogin from "./pages/CaptainLogin";
-import CaptainSignup from "./pages/CaptainSignup";
-import Home from "./pages/Home";
-import UserProtectWrapper from "./pages/UserProtectWrapper";
-import UserLogout from "./pages/UserLogout";
-import CaptainHome from "./pages/CaptainHome";
-import CaptainProtectWrapper from "./pages/CaptainProtectWrapper";
-import CaptainLogout from "./pages/CaptainLogout";
-import Riding from "./pages/Riding";
-import CaptainRiding from "./pages/CaptainRiding";
-import 'remixicon/fonts/remixicon.css'
+import { Route } from "react-router-dom";
+import Home from "./components/Home";
+import { Routes } from "react-router-dom";
+import Trending from "./components/Trending";
+import Popular from "./components/Popular";
+import Movie from "./components/Movie";
+import Tvshows from "./components/Tvshows";
+import People from "./components/People";
+import Tvdetails from "./components/Tvdetails";
+import Persondetails from "./components/Persondetails";
+import { Moviedetails } from "./components/Moviedetails";
 
 const App = () => {
   return (
-    <div>
+    <div className="bg-[#1F1E24] w-screen h-screen flex">
       <Routes>
-        <Route path="/" element={<Start />} />
-        <Route path="/login" element={<UserLogin />} />
-        <Route path="/riding" element={<Riding/>}/>
-        <Route path="/captain-riding" element={<CaptainRiding/>}/>
-        <Route path="/signup" element={<UserSignup />} />
-        <Route path="/captain-login" element={<CaptainLogin />} />
-        <Route path="/captain-signup" element={<CaptainSignup />} />
-        <Route
-          path="/home"
-          element={
-            <UserProtectWrapper>
-              <Home />
-            </UserProtectWrapper>
-          }
-        />
-        <Route
-          path="/user/logout"
-          element={
-            <UserProtectWrapper>
-              <UserLogout />
-            </UserProtectWrapper>
-          }
-        />
-
-        <Route
-          path="/captain-home"
-          element={
-            <CaptainProtectWrapper>
-              <CaptainHome />
-            </CaptainProtectWrapper>
-          }
-        />
-
-        <Route
-          path="/captain/logout"
-          element={
-            <CaptainProtectWrapper>
-              <CaptainLogout />
-            </CaptainProtectWrapper>
-          }
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/trending" element={<Trending />} />
+        <Route path="/popular" element={<Popular />} />
+        <Route path="/movie" element={<Movie />} />
+        <Route path="/movie/details/:id" element={<Moviedetails />} />
+        <Route path="/tv" element={<Tvshows />} />
+        <Route path="/tv/details/:id" element={<Tvdetails />} />
+        <Route path="/person" element={<People />} />
+        <Route path="/person/details/:id" element={<Persondetails />} />
       </Routes>
     </div>
   );
