@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
+
+// fuction code call 
+
 const captainSchema = new mongoose.Schema({
   fullname: {
     firstname: {
